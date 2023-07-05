@@ -1,0 +1,187 @@
+<!-- Here, we added a link to the CSS file using url_for, and the get_flashed_messages section -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- w3schools CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .Buttons_container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #fafafa;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn-container a {
+            text-decoration: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #596072;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #606b83;
+        }
+    </style>
+
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+  <title>Page </title>
+  {% endif %}
+
+</head>
+
+<body>
+
+  <div class="w3-content" style="max-width:2000px;margin-top:46px">
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Star Tracking Application</a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+            aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/algo1">Star Matching</a>
+            </div>
+              <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/algo2">Star Name</a>
+            </div>
+<!--              <div class="navbar-nav">-->
+<!--              <a class="nav-item nav-link" href="/algo3">Algorithm 3</a>-->
+<!--            </div>-->
+<!--              <div class="navbar-nav">-->
+<!--              <a class="nav-item nav-link" href="/algo4">Algorithm 4</a>-->
+<!--            </div>-->
+            <!-- Navbar Right Side -->
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Intro -->
+    <div class="container" style="text-align: center">
+    <h1>Welcome to the Stars Track Site!</h1>
+    <div class="intro">
+      <p style="font-size: 30px">This is an implementation for two different <b>star tracking algorithms</b>.</p>
+      <p>
+      <br>
+        <h2 style="text-align: Left">Stars Matching Algorithm:</h2>
+        <p style="text-align: Left; font-size: 20px">This algorithm locates stars in images, converts them into image-relative points, and generates triangles using Delaunay triangulation. It enables efficient representation and analysis of star positions within the image.</p>
+      </p>
+      <p>
+        <h2 style="text-align: Left">Star Name Algorithm:</h2>
+      <p style="text-align: Left; font-size: 20px">The Star Match Algorithm connects to an external database to retrieve images and coordinates. It performs star pattern solving to name each star and determine its location. It then converts image coordinates to WCS (World Coordinate System) coordinates for accurate star positioning.</p>
+      </p>
+      <br>
+      </div>
+            <!-- Choose Buttons -->
+      <br>
+      <div class="Buttons_container">
+        <h2 style="font-size: 35px; margin-top: 150px">Please Choose an algorithm:</h2>
+        <div class="btn-container">
+            <a href="/algo1">
+                <button class="btn">Star Matching</button>
+            </a>
+        </div>
+        <div class="btn-container">
+            <a href="/algo2">
+                <button class="btn">Star Name</button>
+            </a>
+        </div>
+<!--        <div class="btn-container">-->
+<!--            <a href="/algo3">-->
+<!--                <button class="btn">Algo 3</button>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="btn-container">-->
+<!--            <a href="/algo4">-->
+<!--                <button class="btn">Algo 4</button>-->
+<!--            </a>-->
+<!--        </div>-->
+    </div>
+
+
+    <div class=""></div>
+    </form>
+    </div>
+    {% if error %}
+  <title>{{error}}</title>
+  {% else %}
+  <title>Page </title>
+  {% endif %}
+    <!-- Page Content -->
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}}">
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </main>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- w3schools CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+  <title>Page </title>
+  {% endif %}
+    <title>Star Matching Algorithm</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: rgba(0, 0, 0, 0.2); /* Adjust the transparency level as desired */
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center">Star Matching Algorithm</h1>
+<div class="w3-content" style="max-width:2000px">
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Star Tracking Application</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+            aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/">Star Matching</a>
+            </div>
+              <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/">Star Name</a>
+            </div>
+              <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/">Algorithm 3</a>
+            </div>
+              <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/">Algorithm 4</a>
+            </div>
+            <!-- Navbar Right Side -->
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    {% if error %}
+  <title>{{error}}</title>
+  {% else %}
+  <title>Page </title>
+  {% endif %}
+    <!-- Page Content -->
+
+
+    <script>
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
+
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+  </div>
+<div style="padding:20px;">
+<!--<h2>Python Flask Upload multiple images and display multiple images uploaded</h2>-->
+    <div class = "sub-header">
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    <div class="container">
+        <form style="text-align: Left; margin-left: 200px" method="post" action="/algo1" enctype="multipart/form-data">
+            <dl>
+                <p>
+                    <input type="file" name="file" multiple="true" autocomplete="off" required>
+                </p>
+            </dl>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+        </form>
+    </div>
+</div>
+
+<div class="container_merge" style="text-align: center">
+    {% if filenames %}
+        <div class="photos-container">
+            <div class = "sub-header" style="text-align: left; margin-bottom: 1rem;">
+                    Before Matching:</div>
+            {% for filename in filenames %}
+                <div class="photo-frame" style="padding:20px;float:left;">
+                    <img width="500" src="{{ url_for('display_image', filename=filename) }}">
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-container" style="text-align: Left">
+            <p>After Matching:</p>
+        </div>
+        <div class="photo-frame_button" style="float:left;">
+            <img style="alignment: left" src="{{ url_for('static', filename='../static/post_track/star_match_result.jpg') }}">
+        </div>
+    {% endif %}
+</div>
+
+</div>
+     <div class="footer"></div>
+</body>
+
+</html>
